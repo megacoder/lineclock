@@ -1,0 +1,13 @@
+widget.py:
+	get float values for color instead of calculating them \20.03.2010 13:59:22
+
+listdialog.py:
+	popup menu \20.03.2010 14:32:13
+	use of actiongroup \27.03.2010 02:20:45
+	fix: new evt creation if treeview row is selected \27.03.2010 10:35:39
+
+editdialog.py:
+	fix time format in init \27.03.2010 02:45:48
+
+main.py:
+	fix: editdialog deletion before get_event leads to empty title \27.03.2010 10:38:44

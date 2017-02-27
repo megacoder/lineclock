@@ -1,0 +1,98 @@
+LineClock - desktop clock shaped in the form of line
+ LineClock uses representation of time as a straight line.
+ Sometimes it's handy to see what event would take place in
+ half an hour as a point on time line. And here it is.
+ Events may be set by clicking on time line or by editing them
+ in a dialog.
+
+==Requirements==
+  Python 2.5+ (http://python.org)
+  PyGTK 2.12+ (http://pygtk.org)
+  pynotify    (http://www.galago-project.org)
+
+Also some console audio player is needed to play alarm sound.
+aplay or mplayer should be good
+
+==Installation==
+run (as root)
+python setup.py install
+
+LineClock can be run without installation, just run lineclock.py
+
+==Config==
+User config is placed in
+$HOME/.config/lineclock.conf
+
+Config has 4 sections
+
+===[widget] Section===
+type - either H or V. Defines orientation of time line: horizontal or
+	vertical
+timerange - length of time line, in seconds
+nowrel - number from 0.0 to 1.0. Position of Now on time line
+tickgap - distance between labeled ticks, in seconds
+ntick - number of ticks between labeled ones
+ltr - if 1, time raises left-to-right/up-to-down. If -1 otherwise.
+	Other values are not allowed
+main_w - width of time line. from 0 pixels to infinity =)
+now_w - width of Now line
+long_w - width of labeled ticks
+short_w - width of simple ticks
+marker_w - width of markers that mean events on time line
+now_h - 2 numbers in brackets, delimited by comma. numbers mean
+	start and end of Now line, measured downwards/leftwards
+	from time line. Negative number means upper than time line.
+	Order is not important. Pixels
+long_h - the same for labeled ticks
+short_h - for simple ticks
+marker_h - for markers
+label_fmt - format of labels, that is used in time.strftime
+label_x - horizontal distance from label center to time line
+label_y - vertical distance from label center to time line
+pos_tolerance - number of pixels that defines if position on time
+	line is considered as marker
+gtkrc - name of rc file, see below
+
+===[window] Section===
+decorated - if True, window has frame
+keep_below - self explaining
+sticky
+skip_pager
+skip_taskbar
+opacity - from 0.0 to 1.0
+x - position of window
+y - position of window
+length - if type=H it's window width, if type=V it's height
+
+===[alarm] Section===
+player - command used as audio player. aplay or mplayer should be good
+file - sound file to play
+
+===[misc] Section===
+tooltip_fmt - time format used in tooltips
+
+==gtkrc==
+The look of LineClock is modified via gtkrc file. Path to this file is
+defined in section [widget] of config file. gtkrc file looks like
+
+pixmap_path "."
+style "lineclock" {
+  xthickness = 1
+  ythickness = 1
+  font_name = "11"
+
+  fg[NORMAL] = "#02158f"	# main line and ticks
+  fg[ACTIVE] = "#91bef2"	# now line
+  #fg[PRELIGHT] = "green"	# not used
+  fg[SELECTED] = "#bababa"	# markers
+  fg[INSENSITIVE] = "#4e8eda"	# labels new
+
+  bg[NORMAL] = "#150926"	# background
+  #bg_pixmap[NORMAL] = "background.png"
+}
+widget "*lineclock-widget" style "lineclock"
+
+Colors of various lines, labels and background are defined here.
+You may specify background image instead of plain color. font_name
+parameter affects labels. xtickness and ythickness define margins
+around time line.

@@ -1,0 +1,14 @@
+pixmap_path "."
+style "wtf" {
+  xthickness = 1
+  ythickness = 1
+  font_name  = "11"
+
+  fg[NORMAL]      = "#a3b6b6"	# main line and ticks
+  fg[ACTIVE]      = "#91bef2"	# now line
+  fg[PRELIGHT]    = "gold1"	# labels
+  fg[SELECTED]    = "#D3E6E6"	# markers
+  fg[INSENSITIVE] = "#D3E6E6"	# labels new
+  bg[NORMAL]      = "#150926"	# background
+}
+widget "*lineclock-widget" style "wtf"
